@@ -1,0 +1,92 @@
+{
+	"private": true,
+	"version": "1.7.2",
+	"name": "time",
+	"displayName": "Time",
+	"author": "time",
+	"publisher": "n3rds-inc",
+	"icon": "media/timeIcon1.png",
+	"repository": "https://",
+	"description": "Track your code time like wakatime, but locally.",
+	"engines": {
+		"vscode": "^1.68.0"
+	},
+	"categories": [
+		"Visualization"
+	],
+	"keywords": [
+		"wakatime",
+		"time",
+		"codetime",
+		"code",
+		"codingtime",
+		"productivity",
+		"code",
+		"coding",
+		"tracker"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "time.showReport",
+				"title": "Time: Show Coding Time Report"
+			},
+			{
+				"command": "time.wipeoutData",
+				"title": "Time: Wipeout Coding Time Data"
+			}
+		],
+		"configuration": {
+			"title": "Coding Time Tracker",
+			"properties": {
+				"codingTimeTracker.idleTimeThreshold": {
+					"type": "number",
+					"default": 180,
+					"description": "Idle time threshold in seconds"
+				}
+			}
+		}
+	},
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		}
+	},
+	"scripts": {
+		"copyWebapp": "cp ../webapp/dist/assets/index.js ./media && cp ../webapp/dist/assets/index.css ./media",
+		"---": "---",
+		"build": "yarn copyWebapp && node ./esbuild.js",
+		"build:dev": "yarn toDevelopment && yarn build",
+		"build:release": "yarn toRelease && yarn build && yarn toDevelopment",
+		"package": "yarn build:release && vsce package --yarn --skip-license",
+		"publ": "yarn package && vsce publish --yarn --skip-license",
+		"-----": "-----",
+		"lint": "eslint src --ext ts",
+		"test": "vscode-test",
+		"toDevelopment": "cp ./.env.development.public ./.env",
+		"toRelease": "cp ./.env.release.public ./.env"
+	},
+	"devDependencies": {
+		"@time/shared": "*",
+		"@types/mocha": "^10.0.6",
+		"@types/node": "20.x",
+		"@types/vscode": "1.68",
+		"@typescript-eslint/eslint-plugin": "^7.11.0",
+		"@typescript-eslint/parser": "^7.11.0",
+		"@vscode/test-cli": "^0.0.9",
+		"@vscode/test-electron": "^2.4.0",
+		"eslint": "^8.57.0",
+		"typescript": "^5.4.5"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5"
+	},
+	"__metadata": {
+		"installedTimestamp": 1739729631460,
+		"size": 1159721
+	}
+}
