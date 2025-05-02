@@ -2349,7 +2349,7 @@
 		"@vscode/test-electron": "^2.2.1",
 		"chai": "^4.3.10",
 		"chai-as-promised": "^7.1.1",
-		"esbuild": "^0.14.48",
+		"esbuild": "^0.25.3",
 		"mocha": "^10.1.0",
 		"source-map-support": "^0.5.12",
 		"ts-node": "^10.9.2",
